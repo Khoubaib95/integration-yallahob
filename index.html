@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Yallahob</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='alpine.js'></script>
+</head>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    * {
+        outline: none;
+    }
+</style>
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <header class="w-full shadow-md">
+        <div class="bg-[#c00015] text-center text-white py-3 text-xs md:text-sm">
+            Rupture de stock
+            grâce à
+            la forte demande de
+            Zidni Menek. Réservez et soyez parmi les premiers à le recevoir dès le prochain arrivage bientôt!
+        </div>
+        <nav class="flex max-w-screen-xl mx-auto p-2 font-medium">
+            <!-- Desktop Nav Links -->
+            <div class="hidden lg:flex flex-1 items-center space-x-5 text-sm">
+                <a href="#" class="h-fit text-gray-600">ACCUEIL</a>
+                <a href="#" class="h-fit">ZIDNI MENEK</a>
+                <a href="#" class="h-fit text-gray-600">CONTACTEZ NOUS</a>
+                <a href="#" class="h-fit text-gray-600">A PROPOS</a>
+            </div>
+            <!---->
+            <!-- Mobile Nav Links -->
+            <div x-data="{ open: false }" class="flex items-center lg:hidden flex-1 relative overflow-hidden"
+                aria-labelledby="slide-over-title" aria-modal="true">
+                <button @click="open = true" class="p-2 hover:shadow-md rounded-full cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-menu">
+                        <line x1="4" x2="20" y1="12" y2="12" />
+                        <line x1="4" x2="20" y1="6" y2="6" />
+                        <line x1="4" x2="20" y1="18" y2="18" />
+                    </svg>
+                </button>
+                <div x-init="$el.style.cssText='display:block'" class="hidden relative z-10">
+                    <div x-show="open" x-transition:enter="ease-in-out duration-500"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        x-description="Background backdrop, show/hide based on slide-over state."
+                        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                    <div x-show="open" class="fixed inset-0 overflow-hidden">
+                        <div class="pointer-events-none fixed inset-y-0 left-0 flex w-screen max-w-lg">
+                            <div x-show="open" x-transition:enter="transform transition ease-in-out duration-500"
+                                x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+                                x-transition:leave="transform transition ease-in-out duration-500"
+                                x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
+                                class="pointer-events-auto relative w-screen" @click.away="open = false">
+                                <div
+                                    class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl px-4 sm:px-6 gap-2">
+                                    <button type="button" @click="open = false" class="ml-auto" id="shopping-cart-close"
+                                        class="relative rounded-md text-black hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                                            <path d="M18 6 6 18" />
+                                            <path d="m6 6 12 12" />
+                                        </svg>
+                                    </button>
+                                    <!-- desktop search  -->
+                                    <form class="flex gap-2">
+                                        <input class="w-full px-3 border border-gray-300" type="text"
+                                            placeholder="Rechercher..." class="transition-all overflow-hidden ml-2 w-0">
+                                        <span
+                                            class="p-2 bg-red-700 text-white hover:shadow-md rounded-full cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-search">
+                                                <circle cx="11" cy="11" r="8" />
+                                                <path d="m21 21-4.3-4.3" />
+                                            </svg>
+                                        </span>
+
+                                    </form>
+                                    <!---->
+                                    <div class="flex flex-col gap-3 my-3" @click="open = false">
+                                        <a href="#" class="text-gray-600">ACCUEIL</a>
+                                        <a href="#">ZIDNI MENEK</a>
+                                        <a href="#" class="text-gray-600">CONTACTEZ NOUS</a>
+                                        <a href="#" class="text-gray-600">A PROPOS</a>
+                                    </div>
+                                    <div class="border-t border-gray-300 p-2">
+                                        <a href="#" class="flex items-center gap-3">
+                                            <span class="p-2 shadow-md rounded-full cursor-pointer"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-user">
+                                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                                    <circle cx="12" cy="7" r="4" />
+                                                </svg></span>
+                                            Mon profile
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <!-- Logo -->
+            <div class="flex items-center w-44">
+                <a href="#">
+                    <img src="/assets/icons/logo.png">
+                </a>
+            </div>
+            <!---->
+            <div class="flex flex-1 space-x-1 justify-end items-center">
+                <!-- desktop search  -->
+                <form x-data="{ expanded: false }" class="hidden lg:flex">
+                    <span @click="expanded = !expanded" class="p-2 hover:shadow-md rounded-full cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-search">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.3-4.3" />
+                        </svg>
+                    </span>
+                    <input :class="{ 'w-[194px] ml-2': expanded }" type="text" placeholder="Rechercher..."
+                        class="transition-all overflow-hidden w-0">
+                </form>
+                <!---->
+                <!-- profile -->
+                <a href="#" class="hidden lg:flex p-2 hover:shadow-md rounded-full cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </a>
+                <!---->
+                <!-- Shopping Cart  -->
+                <div x-data="{ open: false }" class="relative" aria-labelledby="slide-over-title" aria-modal="true">
+                    <button @click="open = true" class="p-3 hover:shadow-md rounded-full relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-shopping-bag">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                            <path d="M3 6h18" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
+                        <span
+                            class="flex absolute -top-1 left-[70%] justify-center items-center rounded-lg bg-white px-1 text-sm font-normal text-black ring-1 ring-inset ring-gray-500/10">0</span>
+                    </button>
+                    <div x-init="$el.style.cssText='display:block'" class="hidden relative z-10">
+                        <div x-show="open" x-transition:enter="ease-in-out duration-500"
+                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                            x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0"
+                            x-description="Background backdrop, show/hide based on slide-over state."
+                            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                        <div x-show="open" class="fixed inset-0 overflow-hidden">
+                            <div class="pointer-events-none fixed inset-y-0 right-0 flex w-screen max-w-lg">
+                                <div x-show="open"
+                                    x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+                                    x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                                    x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+                                    x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+                                    class="pointer-events-auto relative w-screen" @click.away="open = false">
+                                    <div class="flex h-full flex-col  bg-[#fbfbfb] py-3 shadow-xl px-4 sm:px-6">
+                                        <button type="button" @click="open = false" id="shopping-cart-close"
+                                            class="absolute top-2 right-9 rounded-md text-black hover:text-gray-500 focus:outline-none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                                                <path d="M18 6 6 18" />
+                                                <path d="m6 6 12 12" />
+                                            </svg>
+                                        </button>
+                                        <div x-data="{ checked: true }">
+                                            <div class="flex flex-col border-green-800 border w-full mt-5 p-3"><label
+                                                    class="inline-flex items-center cursor-pointer ">
+                                                    <input type="checkbox" x-model="checked" class="sr-only peer"
+                                                        checked>
+                                                    <div
+                                                        class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                                    </div>
+
+                                                </label>
+                                                <span class="mt-2 font-medium text-gray-900">Checkbox
+                                                    de test uniquement pour afficher le cas d'utilisation du panier
+                                                    vide</span>
+                                            </div>
+                                            <div x-show="checked">
+                                                <div
+                                                    class="mt-6 flex justify-between border-b border-gray-200 text-sm text-gray-500">
+                                                    <p>Produit</p>
+                                                    <p>totale</p>
+                                                </div>
+                                                <h2 class="">Votre panier</h2>
+                                                <div class="flex flex-col justify-between h-full">
+                                                    <div class="flow-root">
+                                                        <ul role="list" class="divide-y divide-gray-200">
+                                                            <li class="flex py-3">
+                                                                <div
+                                                                    class="h-28 w-28 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                                    <img src="/assets/images/1.jpeg"
+                                                                        alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+                                                                        class="h-full w-full object-cover object-center">
+                                                                </div>
+                                                                <div class="ml-4 flex flex-1 flex-col">
+                                                                    <div>
+                                                                        <div class="flex justify-between">
+                                                                            <h3>
+                                                                                <a href="#">ZIDNI MENEK</a>
+                                                                            </h3>
+                                                                            <p class="ml-4">69.000 TND</p>
+                                                                        </div>
+                                                                        <p class="mt-1 text-sm text-gray-500">Amour</p>
+                                                                    </div>
+                                                                    <div
+                                                                        class="flex flex-1 items-end justify-between text-sm">
+                                                                        <div x-data="{ quantity: 1 }"
+                                                                            class="flex items-center">
+                                                                            <button
+                                                                                @click="quantity = quantity > 1 ? quantity - 1 : 1"
+                                                                                :class="{ 'text-gray-400 cursor-not-allowed': quantity == 1 }"
+                                                                                class="text-sm w-7 h-7 border border-gray-200 rounded-md flex justify-center items-center hover:bg-gray-200 text-gray-700 font-bold focus:outline-none">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="lucide lucide-minus">
+                                                                                    <path d="M5 12h14" />
+                                                                                </svg>
+                                                                            </button>
+                                                                            <span x-text="quantity"
+                                                                                class="text-lg mx-2.5"></span>
+                                                                            <button @click="quantity++"
+                                                                                class="text-lg w-7 h-7 border border-gray-200 rounded-md flex justify-center items-center hover:bg-gray-200 text-gray-700 font-bold focus:outline-none">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="lucide lucide-plus">
+                                                                                    <path d="M5 12h14" />
+                                                                                    <path d="M12 5v14" />
+                                                                                </svg>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="flex">
+                                                                            <button type="button"
+                                                                                class="hover:text-red-400">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="lucide lucide-trash-2">
+                                                                                    <path d="M3 6h18" />
+                                                                                    <path
+                                                                                        d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                                                                    <path
+                                                                                        d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                                                                    <line x1="10" x2="10" y1="11"
+                                                                                        y2="17" />
+                                                                                    <line x1="14" x2="14" y1="11"
+                                                                                        y2="17" />
+                                                                                </svg>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="flex flex-col border-t border-gray-200 pt-4 gap-3">
+                                                        <div class="flex justify-between">
+                                                            <p>sous-totale</p>
+                                                            <p>69.000 TND</p>
+                                                        </div>
+                                                        <div class="flex justify-between">
+                                                            <p>livraison</p>
+                                                            <p>7 TND</p>
+                                                        </div>
+                                                        <div class="flex justify-between">
+                                                            <p>Total</p>
+                                                            <p>76.000 TND</p>
+                                                        </div>
+                                                        <p class="text-sm text-gray-500">Frais de livraison et taxes
+                                                            calculés à
+                                                            la caisse.</p>
+                                                        <a href="#" class="large-button">Vérifier →</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Empty Cart -->
+                                            <div x-show="!checked"
+                                                class="h-full flex flex-col items-center justify-center">
+                                                <div class="mb-10 h-40 w-40 flex flex-shrink-0 overflow-hidden">
+                                                    <img src="/assets/icons/empty-cart.png"
+                                                        class="h-full w-full object-cover object-center" />
+                                                </div>
+                                                <p class="mb-5 text-lg text-center ">Oups, votre panier est vide</p>
+                                                <a href="#" class="large-button w-3/4 text-center"
+                                                    @click="open = false">Continuer vos
+                                                    achats</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </nav>
+    </header>
+    <!---->
+    <main class="w-[87%] mt-16 max-w-screen-xl mx-auto">
+        <!-- Product details -->
+        <section class="flex flex-col md:flex-row ">
+            <div class="flex-1 relative md:sticky top-0 self-baseline">
+                <div class="flex flex-col gap-3 rounded-2xl overflow-hidden">
+                    <img src="/assets/images/1.jpeg" alt="Zidni Menek">
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="flex justify-center items-center bg-gray-200 aspect-square overflow-hidden rounded-2xl">
+                        <img src="/assets/images/a-qpwbaltdricwvmxouml3nppx7voeu7sol1vddp25vk.jpg" alt="Zidni Menek"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-center items-center bg-gray-200 aspect-square overflow-hidden rounded-2xl">
+                        <img src="/assets/images/bbb-qpwba30lytn6ffozwegk9ugpc692k9q1ugtns5u1c0.jpg" alt="Zidni Menek"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-center items-center bg-gray-200 aspect-square overflow-hidden rounded-2xl">
+                        <img src="/assets/images/dddr-qpwb9dmyuaofpypv0lhmwiv9arq5sfxaqz7jtovo00.jpg" alt="Zidni Menek"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-center items-center bg-gray-200 aspect-square overflow-hidden rounded-2xl">
+                        <img src="/assets/images/WhatsApp-Image-2024-03-11-at-14.58.25-1-1200x800.jpeg"
+                            alt="Zidni Menek" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col flex-1 px-0 md:px-5 mt-5 md:mt-0 gap-6">
+                <h1 class="text-6xl font-bold" style="font-size: 55px;">Zidni Menek</h1>
+                <p class="font-semibold text-xl">
+                    Engagez
+                    des conversations intimes et redécouvrez
+                    votre
+                    partenaire.</p>
+                <span dir="rtl" class="font-semibold text-xl text-end"><span>د.ت</span><span>69,000</span></span>
+                <button class="bg-black text-white p-2 rounded-md">AJOUTER AU PANIER</button>
+                <div class="flex justify-between text-center">
+                    <div class="flex flex-1 flex-col gap-2 items-center">
+                        <img class="w-12a" src="/assets/icons/eco_friendly-1-80x80.png" />
+                        <span class="font-semibold text-ms">Ecofriendly</span>
+                    </div>
+                    <div class="flex flex-1 flex-col gap-2 items-center">
+                        <img class="w-12a" src="/assets/icons/2_3401fe43-3aa4-4cbf-830e-597b45f0b5f5-125x80.png" />
+                        <span class="font-semibold text-ms">livraison Rapide</span>
+                    </div>
+                    <div class="flex flex-1 flex-col gap-2 items-center">
+                        <img class="w-12a" src="/assets/icons/3_16bf93e3-8add-4b3c-af71-92274b71fa19-80x80.png" />
+                        <span class="font-semibold text-ms ">Satisfation Grantie</span>
+                    </div>
+                </div>
+                <p>
+                    Vous pensez tout savoir sur votre partenaire ? Détrompez-vous ! Notre jeu
+                    vous propose des questions auxquelles vous n'auriez jamais pensé, elle vous
+                    aide à vous reconnecter et à découvrir des aspects insoupçonnés de votre
+                    relation. Avec aucune préparation nécessaire, le jeu est simple à jouer et
+                    incroyablement plaisant. Riez ensemble, partagez des secrets, et créez des
+                    souvenirs inoubliables avec chaque partie. Un vrai boost pour votre
+                    complicité !
+                </p>
+                <div class="flex flex-col gap-6 mt-1">
+                    <div class="flex gap-2 items-center">
+                        <img src="/assets/icons/moment.jpg" />
+                        <p class="font-semibold text-lg">Moments de qualité garantis</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="/assets/icons/heart.jpg" />
+                        <p class="font-semibold text-lg">Questions jamais pensé</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="/assets/icons/box.jpg" />
+                        <p class="font-semibold text-lg">Le cadeau parfait pour dire 'Je t'aime'.</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="/assets/icons/hello.jpg" />
+                        <p class="font-semibold text-lg">Redécouvrez votre partenaire</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---->
+        <!-- Product gallery -->
+        <section class="mt-28">
+            <h2 class="text-3xl font-bold text-center">À propos du niveau de jeu</h2>
+            <div class="flex flex-col-reverse md:flex-row mt-5">
+                <div class="flex flex-1 flex-col justify-center items-center p-0 md:px-10">
+                    <span
+                        class="flex justify-center items-center w-24 h-24 mt-6 mb:mt-0 rounded-full bg-gray-100 font-bold text-5xl">
+                        .01
+                    </span>
+                    <p class="font-bold text-4xl text-center mt-4">Zidni Menek Farha</p>
+                    <span class="text-gray-400 text-sm text-center mt-5">
+                        Les cartes de cette étape sont conçue pour evoquer le sourire, le rire est un
+                        sentiment de détente.
+                    </span>
+                </div>
+                <div class="flex flex-1 aspect-square overflow-hidden rounded-3xl justify-center items-center">
+                    <img src="/assets/images/a-qpwbaltdricwvmxouml3nppx7voeu7sol1vddp25vk.jpg" alt="Zidni Menek"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="flex flex-col-reverse md:flex-row mt-5">
+                <div class="flex flex-1 flex-col justify-center items-center p-0 md:px-10">
+                    <span
+                        class="flex justify-center items-center w-24 h-24 mt-6 mb:mt-0 rounded-full bg-gray-100 font-bold text-5xl">
+                        .02
+                    </span>
+                    <p class="font-bold text-4xl text-center mt-4">Zidni Menek Hekaya</p>
+                    <span class="text-gray-400 text-sm text-center mt-5">
+                        Exploration approfondie: Dans ce niveau, vous discuterez de sujet que vous n'avez
+                        pas abordés auparavant et vous explorerez vos sentiments.
+                    </span>
+                </div>
+                <div class="flex flex-1 aspect-square overflow-hidden rounded-3xl justify-center items-center">
+                    <img src="/assets/images/bbb-qpwba30lytn6ffozwegk9ugpc692k9q1ugtns5u1c0.jpg" alt="Zidni Menek"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="flex flex-col-reverse md:flex-row mt-5">
+                <div class="flex flex-1 flex-col justify-center items-center p-0 md:px-10">
+                    <span
+                        class="flex justify-center items-center w-24 h-24 mt-6 mb:mt-0 rounded-full bg-gray-100 font-bold text-5xl">
+                        .03
+                    </span>
+                    <p class="font-bold text-4xl text-center mt-4">Zidni Menek Benna</p>
+                    <span class="text-gray-400 text-sm text-center mt-5">
+                        Review: dans ce niveau, vous ferez le point sur cette expérience et sur les
+                        moments les plus forts que vous avez vécus dans le jeu.
+                    </span>
+                </div>
+                <div class="flex flex-1 aspect-square overflow-hidden rounded-3xl justify-center items-center">
+                    <img src="/assets/images/dddr-qpwb9dmyuaofpypv0lhmwiv9arq5sfxaqz7jtovo00.jpg" alt="Zidni Menek"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+        <!-- Tesimonials -->
+        <section class="mt-28">
+            <h2 class="text-3xl font-bold text-center mb-4">Satisfaction garantie, sans stress et sans question</h2>
+            <div class="flex flex-wrap justify-center gap-12">
+                <div>
+                    <div class="gap-1 items-center h-40  min-w-64 max-w-[22.5rem] p-5 pb-24 bg-gray-100"
+                        style="clip-path: polygon(0% 0%, 100% 0%, 100% 87%, 8% 87%, 5% 95%, 3% 87%, 0 87%);">
+                        <div class="flex items-start gap-6">
+                            <div class="flex flex-col">
+                                <div class="flex gap-2 items-center">
+                                    <img src="/assets/icons/rec.PNG" class="w-4 h-4" />
+                                    <p class="font-semibold">recommande</p>
+                                </div>
+                                <p>Merci beaucoup pour votre professionnalisme <img src="/assets/icons/flower.png"
+                                        class="w-5" />
+                                </p>
+                            </div>
+                            <img src="/assets/icons/facebook.png" class="w-5" />
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3"><img class="w-9 h-9 rounded-full"
+                            src="/assets/images/profile-picture.jpg" alt="Rounded avatar">
+                        <span class="font-semibold">AD EM</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="gap-1 items-center h-40 min-w-64 max-w-[22.5rem] p-5 pb-24 bg-gray-100"
+                        style="clip-path: polygon(0% 0%, 100% 0%, 100% 87%, 8% 87%, 5% 95%, 3% 87%, 0 87%);">
+                        <div class="flex items-start gap-6">
+                            <div class="flex flex-col">
+                                <div class="flex gap-2 items-center">
+                                    <img src="/assets/icons/rec.PNG" class="w-4 h-4" />
+                                    <p class="font-semibold">recommande</p>
+                                </div>
+                                <p>Merci pour votre professionnalisme <span class="flex gap-1"><img
+                                            src="/assets/icons/red-heart.png" class="w-5" /><img
+                                            src="/assets/icons/blue-heart.png" class="w-5" /></span>
+                                </p>
+                            </div>
+                            <img src="/assets/icons/facebook.png" class="w-5" />
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3"><img class="w-9 h-9 rounded-full"
+                            src="/assets/images/profile-picture-1.jpg" alt="Rounded avatar">
+                        <span class="font-semibold">Haddad Rania</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="gap-1 items-center h-40 min-w-64 max-w-[22.5rem] p-5 pb-24 bg-gray-100"
+                        style="clip-path: polygon(0% 0%, 100% 0%, 100% 87%, 8% 87%, 5% 95%, 3% 87%, 0 87%);">
+                        <div class="flex items-start gap-6">
+                            <div class="flex flex-col">
+                                <div class="flex gap-2 items-center">
+                                    <img src="/assets/icons/rec.PNG" class="w-4 h-4" />
+                                    <p class="font-semibold">recommande</p>
+                                </div>
+                                <p>Je suis trés satisfaite Merci beaucoup
+                                </p>
+                            </div>
+                            <img src="/assets/icons/facebook.png" class="w-5" />
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3"><img class="w-9 h-9 rounded-full"
+                            src="/assets/images/profile-picture.jpg" alt="Rounded avatar">
+                        <span class="font-semibold">Kenza Gharbii</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-6">Évaluation <b>Facebook: 5.0 </b>sur 5, Basée sur<b> 104 avis</b>, affichage de
+                4-5 avis
+                étoiles uniquement</p>
+        </section>
+        <!---->
+        <!-- Icons -->
+        <section class="flex flex-col sm:flex-row gap-10 sm:gap-0 justify-between text-center mt-28">
+            <div class="flex flex-1 flex-col gap-2 items-center">
+                <img class="w-40z" src="/assets/icons/eco_friendly-1-80x80.png" />
+                <span class="font-semibold text-lg">Ecofriendly</span>
+            </div>
+            <div class="flex flex-1 flex-col gap-2 items-center">
+                <img class="w-40z" src="/assets/icons/2_3401fe43-3aa4-4cbf-830e-597b45f0b5f5-125x80.png" />
+                <span class="font-semibold text-lg">livraison Rapide</span>
+            </div>
+            <div class="flex flex-1 flex-col gap-2 items-center">
+                <img class="w-40z" src="/assets/icons/3_16bf93e3-8add-4b3c-af71-92274b71fa19-80x80.png" />
+                <span class="font-semibold text-lg ">Satisfation Grantie</span>
+            </div>
+        </section>
+        <!---->
+    </main>
+    <!-- Footer -->
+    <footer class="mt-28 pt-6 bg-[#e7e7e7]">
+        <p class="text-center font-bold text-xl px-4">Abonnez-vous à l'e-mail et bénéficiez de 10% sur votre prochain
+            achat à l'inscription
+        </p>
+        <form class="flex flex-col sm:flex-row gap-4 justify-center mt-6 px-4">
+            <input type="email" class="w-full sm:w-80 px-4 py-2  pxs-3 border border-black bg-transparent"
+                placeholder="Enter votre adresse mail ici...">
+            <button class="bg-black text-white px-8 py-2 rounded-md">S'INSCRIRE</button>
+        </form>
+        <img src="/assets/icons/logo-thin.png" class="w-56 mx-auto mt-12">
+        <div class="mt-8 flex justify-center gap-3 px-4">
+            <a href="https://facebook.com/" target="_blank"><img src="/assets/icons/facebook-app-symbol.png"
+                    class="w-4" /></a>
+            <a href="https://instagram.com/" target="_blank"><img src="/assets/icons/instagram.png" class="w-4" /></a>
+            <a href="https://www.tiktok.com/" target="_blank"><img src="/assets/icons/tik-tok.png" class="w-4" /></a>
+        </div>
+        <div class="mt-6 bg-black text-white text-center p-5 text-sm"> &copy 2024 - YALLAHOB - Tout les droits sont
+            réservés.
+        </div>
+    </footer>
+    <!---->
+</body>
+
+</html>
